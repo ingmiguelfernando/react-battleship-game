@@ -30,31 +30,32 @@ export type GameState = {
 };
 
 const initialState: GameState = {
-  difficulty: DIFFICULTIES.MEDIUM,
+  difficulty: DIFFICULTIES.EASY,
   maxGuesses: 20,
   guesses: 0,
   shipLength: 2,
   isGameOver: false,
-  maxShips: 2,
-  ships: getRandomShips(2, 2, DIFFICULTIES.MEDIUM),
+  maxShips: 1,
+  ships: getRandomShips(1, 2, DIFFICULTIES.EASY),
 };
 
 const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    incremented(state) {
-      // it's okay to do this because immer makes it immutable
-      // under the hood
-      state.guesses++;
+    sunkShip: (state, action: PayloadAction<string>) => {
+      const ship = state.ships.find((s) => s.name === action.payload);
+      if (ship) {
+        // it's okay to do this because immer makes it immutable
+        // under the hood
+        ship.inFlames = true;
+      }
     },
-    amountAdded(state, action: PayloadAction<number>) {
-      state.difficulty += action.payload;
+    updateGuesses: (state) => {
+      state.guesses += 1;
     },
-    // decrement
-    // reset
   },
 });
 
-export const { incremented, amountAdded } = gameSlice.actions;
+export const { sunkShip, updateGuesses } = gameSlice.actions;
 export default gameSlice.reducer;
