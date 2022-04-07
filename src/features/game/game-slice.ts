@@ -21,8 +21,8 @@ export type Ship = {
 
 export type GameState = {
   difficulty: number;
-  maxGuesses: number;
-  guesses: number;
+  maxTries: number;
+  tries: number;
   shipLength: number;
   isGameOver: boolean;
   maxShips: number;
@@ -30,13 +30,13 @@ export type GameState = {
 };
 
 const initialState: GameState = {
-  difficulty: DIFFICULTIES.EASY,
-  maxGuesses: 20,
-  guesses: 0,
+  difficulty: DIFFICULTIES.MEDIUM,
+  maxTries: 20,
+  tries: 0,
   shipLength: 2,
   isGameOver: false,
   maxShips: 1,
-  ships: getRandomShips(1, 2, DIFFICULTIES.EASY),
+  ships: getRandomShips(1, 2, DIFFICULTIES.MEDIUM),
 };
 
 const gameSlice = createSlice({
@@ -52,7 +52,7 @@ const gameSlice = createSlice({
       }
     },
     updateGuesses: (state) => {
-      state.guesses += 1;
+      state.tries += 1;
     },
   },
 });

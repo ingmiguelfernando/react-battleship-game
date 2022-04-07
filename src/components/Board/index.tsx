@@ -22,5 +22,5 @@ export const Board = () => {
     return content;
   };
 
-  return <div>{getBoard()}</div>;
+  return <div className="min-w-max">{getBoard()}</div>;
 };

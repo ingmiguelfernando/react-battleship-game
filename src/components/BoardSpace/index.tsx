@@ -57,11 +57,8 @@ export const BoardSpace = ({ x, y }: BoardSpaceProps) => {
   };
 
   return (
-    <div
-      className={`${x}-${y} table w-1 h-1 border bg-blue2-400 rounded cursor-help`}
-      onClick={handle}
-    >
-      <svg className={`icon-${state}`} width={40} height={40}>
+    <div className={`${x}-${y} table  border bg-blue2-400 rounded cursor-help`} onClick={handle}>
+      <svg className={`icon-${state} w-7 h-7 sm:w-10 sm:h-10`}>
         <use xlinkHref={`${Icons}#${state}`} />
       </svg>
     </div>
