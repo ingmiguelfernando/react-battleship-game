@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Icons from "../Icon/sprite.svg";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { sunkShip, updateGuesses } from "../../features/game/game-slice";
+import { sunkCoordinate, updateTries } from "../../features/game/game-slice";
 
 enum BOARD_SPACE_STATUS {
   INSPECTED = "inspected",
@@ -20,7 +20,7 @@ export const BoardSpace = ({ x, y }: BoardSpaceProps) => {
 
   useEffect(() => {
     if (!state) {
-      const sunkShips = ships.filter((ship) => ship.inFlames);
+      const sunkShips = ships.filter((ship) => ship.sunk);
       const isPartShip = sunkShips.some((ship) => {
         return ship.coordinates.some((coordinate) => {
           if (coordinate.x === x && coordinate.y === y) {
@@ -50,9 +50,9 @@ export const BoardSpace = ({ x, y }: BoardSpaceProps) => {
       });
       setState(hasShip ? BOARD_SPACE_STATUS.SUNKEN : BOARD_SPACE_STATUS.INSPECTED);
       if (hasShip) {
-        dispatch(sunkShip(shipName));
+        dispatch(sunkCoordinate({ shipName, coordinate: { x, y, inFlames: true } }));
       }
-      dispatch(updateGuesses());
+      dispatch(updateTries({ x, y, inFlames: false }));
     }
   };
 

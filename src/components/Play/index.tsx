@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { Board } from "../Board";
+import { Clue } from "../Clue";
 import { TriesCounter } from "../TriesCounter";
 
 export const Play = () => {
@@ -10,7 +11,10 @@ export const Play = () => {
 
   return (
     <div>
-      <TriesCounter />
+      <div className="flex">
+        <TriesCounter />
+        <Clue />
+      </div>
       <Board />
     </div>
   );

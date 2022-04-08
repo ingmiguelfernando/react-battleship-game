@@ -25,6 +25,7 @@ module.exports = {
       danger: "#e3342f",
       gray: colors.coolGray,
       blue: colors.blueGray,
+      blue2: colors.blue,
       red: colors.rose,
       yellow: colors.yellow,
       green: colors.green,
