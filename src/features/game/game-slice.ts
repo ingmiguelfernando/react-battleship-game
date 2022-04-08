@@ -16,7 +16,7 @@ export enum CLUES {
 }
 
 export type Coordinate = {
-  inFlames: boolean;
+  onFire: boolean;
   x: number;
   y: number;
 };
@@ -44,6 +44,8 @@ export type GameState = {
   ships: Ship[];
 };
 
+const getDefaultShips = (): Ship[] => getRandomShips(2, 2, DIFFICULTIES.MEDIUM);
+
 const initialState: GameState = {
   difficulty: DIFFICULTIES.MEDIUM,
   clue: CLUES.READY,
@@ -52,8 +54,8 @@ const initialState: GameState = {
   shipLength: 2,
   isGameOver: false,
   won: false,
-  maxShips: 1,
-  ships: getRandomShips(1, 2, DIFFICULTIES.MEDIUM),
+  maxShips: 2,
+  ships: getDefaultShips(),
 };
 
 const gameSlice = createSlice({
@@ -67,12 +69,12 @@ const gameSlice = createSlice({
         // under the hood
         ship.coordinates = ship.coordinates.map((c) => {
           if (c.x === action.payload.coordinate.x && c.y === action.payload.coordinate.y) {
-            return { ...c, inFlames: true };
+            return { ...c, onFire: true };
           }
           return c;
         });
 
-        if (ship.coordinates.every((c) => c.inFlames)) {
+        if (ship.coordinates.every((c) => c.onFire)) {
           ship.sunk = true;
         }
       }
@@ -99,8 +101,9 @@ const gameSlice = createSlice({
         state.won = true;
       }
     },
+    resetGame: () => ({ ...initialState, ships: getDefaultShips() }),
   },
 });
 
-export const { sunkCoordinate, updateTries } = gameSlice.actions;
+export const { sunkCoordinate, updateTries, resetGame } = gameSlice.actions;
 export default gameSlice.reducer;

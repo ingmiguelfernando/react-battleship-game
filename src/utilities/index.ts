@@ -11,8 +11,10 @@ export const getRandomShips = (
   difficulty: DIFFICULTIES
 ): Ship[] => {
   const ships: Ship[] = [];
+
+  const randomName = Math.random().toString(36).substring(2, 6);
   for (let i = 0; i < quantity; i++) {
-    ships.push(getRandomShip(shipLength, difficulty, `ship-${i}`));
+    ships.push(getRandomShip(shipLength, difficulty, `ship-${randomName}-${i}`));
   }
   return ships;
 };
@@ -21,6 +23,8 @@ export const getRandomShip = (shipLength: number, difficulty: DIFFICULTIES, name
   const coordinates: Coordinate[] = [];
   const randomCoordinate = getRandomCoordinate(difficulty);
   coordinates.push(randomCoordinate);
+
+  // random direction generator
   const direction = Math.random() < 0.5 ? DIRECTION.HORIZONTAL : DIRECTION.VERTICAL;
   let i = 1;
   while (i < shipLength) {
@@ -28,13 +32,13 @@ export const getRandomShip = (shipLength: number, difficulty: DIFFICULTIES, name
       coordinates.push({
         x: randomCoordinate.x,
         y: getCorrelatedCoordinate(difficulty, randomCoordinate.y, i),
-        inFlames: false,
+        onFire: false,
       });
     } else {
       coordinates.push({
         x: getCorrelatedCoordinate(difficulty, randomCoordinate.x, i),
         y: randomCoordinate.y,
-        inFlames: false,
+        onFire: false,
       });
     }
     i++;
@@ -55,7 +59,7 @@ export const getCorrelatedCoordinate = (
 export const getRandomCoordinate = (difficulty: DIFFICULTIES): Coordinate => {
   const x = Math.floor(Math.random() * difficulty);
   const y = Math.floor(Math.random() * difficulty);
-  return { x, y, inFlames: false };
+  return { x, y, onFire: false };
 };
 
 // "hot" if they're 1 to 2 cells away, "warm" if they're 3 to 4 cells away, or "cold" if they're further away.

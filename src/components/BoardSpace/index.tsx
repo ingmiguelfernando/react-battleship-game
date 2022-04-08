@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Icons from "../Icon/sprite.svg";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { sunkCoordinate, updateTries } from "../../features/game/game-slice";
@@ -18,24 +18,6 @@ export const BoardSpace = ({ x, y }: BoardSpaceProps) => {
   const ships = useAppSelector((state) => state.game.ships);
   const [state, setState] = useState<string | undefined>(undefined);
 
-  useEffect(() => {
-    if (!state) {
-      const sunkShips = ships.filter((ship) => ship.sunk);
-      const isPartShip = sunkShips.some((ship) => {
-        return ship.coordinates.some((coordinate) => {
-          if (coordinate.x === x && coordinate.y === y) {
-            return true;
-          }
-          return false;
-        });
-      });
-
-      if (isPartShip) {
-        setState(BOARD_SPACE_STATUS.SUNKEN);
-      }
-    }
-  }, [ships, state, x, y]);
-
   const handle = (): void => {
     if (!state) {
       let shipName = "";
@@ -50,14 +32,19 @@ export const BoardSpace = ({ x, y }: BoardSpaceProps) => {
       });
       setState(hasShip ? BOARD_SPACE_STATUS.SUNKEN : BOARD_SPACE_STATUS.INSPECTED);
       if (hasShip) {
-        dispatch(sunkCoordinate({ shipName, coordinate: { x, y, inFlames: true } }));
+        dispatch(sunkCoordinate({ shipName, coordinate: { x, y, onFire: true } }));
       }
-      dispatch(updateTries({ x, y, inFlames: false }));
+      dispatch(updateTries({ x, y, onFire: false }));
     }
   };
 
   return (
-    <div className={`${x}-${y} table  border bg-blue2-400 rounded cursor-help`} onClick={handle}>
+    <div
+      className={`${
+        !state ? "cursor-help" : "cursor-not-allowed"
+      } table border bg-blue2-400 rounded `}
+      onClick={handle}
+    >
       <svg className={`icon-${state} w-7 h-7 sm:w-10 sm:h-10`}>
         <use xlinkHref={`${Icons}#${state}`} />
       </svg>

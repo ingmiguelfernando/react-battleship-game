@@ -3,7 +3,7 @@ import { useAppSelector } from "../../app/hooks";
 import { BoardSpace } from "../BoardSpace";
 
 export const Board = () => {
-  const { difficulty } = useAppSelector((state) => state.game);
+  const { difficulty, ships } = useAppSelector((state) => state.game);
 
   const getBoard = () => {
     let content = [];
@@ -11,7 +11,8 @@ export const Board = () => {
     for (let i = 0; i < difficulty; i++) {
       let row = [];
       for (let j = 0; j < difficulty; j++) {
-        row.push(<BoardSpace key={`${i}-${j}`} x={j} y={i} />);
+        // key has the first name of ship to re-render when a game is reset
+        row.push(<BoardSpace key={`${i}-${ships[0].name}-${j}`} x={j} y={i} />);
       }
       content.push(
         <div key={i} className="flex">
