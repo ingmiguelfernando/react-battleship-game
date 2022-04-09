@@ -23,7 +23,7 @@ const getWidthAndHeight = (difficulty: number) => {
     case DIFFICULTIES.HARD:
       return "w-7 h-7 sm:w-11 sm:h-11";
     default:
-      return "";
+      return "default";
   }
 };
 
@@ -54,6 +54,7 @@ export const BoardSpace = ({ x, y }: BoardSpaceProps) => {
 
   return (
     <div
+      data-testid="board-space"
       className={`${
         !state ? "cursor-help" : "cursor-not-allowed"
       } table border bg-blue2-400 rounded `}

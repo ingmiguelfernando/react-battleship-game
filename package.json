@@ -52,8 +52,10 @@
     ]
   },
   "devDependencies": {
+    "@types/redux-mock-store": "^1.0.3",
     "autoprefixer": "^9",
     "postcss": "^7",
+    "redux-mock-store": "^1.5.4",
     "svgstore-cli": "^2.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
