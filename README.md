@@ -5,17 +5,21 @@ ing.miguel.fernando@gmail.com
 
 # Problem Description
 
-Una gran compañía de bienes raíces requiere crear un sitio para obtener información de cripto-moneda en dólares porque el gobierno decidió usarlo como moneda por defecto para EEUU.
-Se necesita crear una lista de cripto-moneda, mostrar el cambio a dólares (usd), lista de filtros y mostrar el detalle.
-https://www.coinlore.com/cryptocurrency-data-api
+The computer randomly chooses the location of two two-cell "ships" on a board of 8 by 8 cells. Each ship is randomly placed either horizontally or vertically. The user then has 20 guesses to find the two ships.
+
+The user enters a coordinate (text, clicking a cell or other), for example `3,5`, and the computer locates the nearest un-hit ship cell to that coordinate and tells them they're "hot" if they're 1 to 2 cells away, "warm" if they're 3 to 4 cells away, or "cold" if they're further away.
+
+As an example, `3,5` is three cells away from `2,7` because (3 - 2) + (7 - 5) = 3, so they'd be told they were "warm".
+
+If the user correctly guesses a ship's location, they're told they've got a hit, and once both cells are hit the user is notified that the ship has been removed from the board. The game ends when both ships have been sunk by the user, or the user has used up their 20 guesses.
 
 # Used Technologies
 
-`reactjs` `typescript` `tailwind` `jest` `react testing library` `axios`
+`reactJS` `ReduxToolkit` `typescript` `tailwind` `jest` `react testing library` `
 
 # Deployed Version (Netlify)
 
-https://crypto-search-weelo.netlify.app/
+https://battleship-game-raygun-miguel.netlify.app/
 
 # Getting Started with Create React App
 
@@ -25,7 +29,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -33,10 +37,18 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `yarn test --coverage`
+
+Launches the test runner and shows the coverage of the project\
+
+### `yarn icon-sprite`
+
+generate a unique icon sprite file based on the icons in the `src/icons` directory.
 
 ### `npm build`
 
