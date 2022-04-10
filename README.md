@@ -41,10 +41,6 @@ If the user correctly guesses a ship's location, they're told they've got a hit,
 
 _Note: I'm not a fan of hardcoded architectures so I decided to keep the game flexible in terms of length of ships, board, tries, also the game is responsive and almost 100% of test coverage_ 😎
 
-# Deployed Version (Netlify)
-
-https://battleship-game-raygun-miguel.netlify.app/
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
