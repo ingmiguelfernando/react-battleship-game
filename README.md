@@ -39,7 +39,7 @@ If the user correctly guesses a ship's location, they're told they've got a hit,
 
 `Day 6` (3.5 hours) : I finished the unit test part, started with the deployment and the documentation.
 
-_Note: I'm not a fan of hardcoded architectures so I decided to keep the game flexible in terms of length of ships, board, tries, also the game is responsive and 100% of test coverage_ 😎
+_Note: I'm not a fan of hardcoded architectures so I decided to keep the game flexible in terms of length of ships, board, tries, also the game is responsive and almost 100% of test coverage_ 😎
 
 # Deployed Version (Netlify)
 
